@@ -1,5 +1,6 @@
 package com.sample.blospot.di.auth
 
+import android.content.SharedPreferences
 import com.sample.blospot.api.auth.OpenApiAuthService
 import com.sample.blospot.persistence.AccountPropertiesDao
 import com.sample.blospot.persistence.AuthTokenDao
@@ -10,7 +11,7 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 @Module
-class AuthModule{
+class AuthModule {
 
     @AuthScope
     @Provides
@@ -26,14 +27,17 @@ class AuthModule{
         sessionManager: SessionManager,
         authTokenDao: AuthTokenDao,
         accountPropertiesDao: AccountPropertiesDao,
-        openApiAuthService: OpenApiAuthService
+        openApiAuthService: OpenApiAuthService,
+        sharedPreferences: SharedPreferences,
+        editor: SharedPreferences.Editor
     ): AuthRepository {
         return AuthRepository(
             authTokenDao,
             accountPropertiesDao,
             openApiAuthService,
-            sessionManager
+            sessionManager,
+            sharedPreferences,
+            editor
         )
     }
-
 }

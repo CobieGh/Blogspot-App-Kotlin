@@ -20,7 +20,7 @@ abstract class BaseAuthFramgnet : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = activity?.let {
-            ViewModelProvider(this, providerFactory).get(AuthViewModel::class.java)
+            ViewModelProvider(it, providerFactory).get(AuthViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
     }
 }
